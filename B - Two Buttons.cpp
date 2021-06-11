@@ -1,68 +1,64 @@
-#include <bits/stdc++.h>
+/***
+**      Bismillahir Rahmanir Rahim
+**              ALLAHU AKBAR
+**
+**     Author: Iftekhar Ahamed Siddiquee
+**     Bangladesh University of Business and Technology,
+**     Dept. of CSE.
+***/
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <sstream>
+#include <queue>
+#include <deque>
+#include <bitset>
+#include <iterator>
+#include <list>
+#include <stack>
+#include <map>
+#include <set>
+#include <functional>
+#include <numeric>
+#include <utility>
+#include <limits>
+#include <time.h>
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
 using namespace std;
-vector<int> data[10002];
-void preoad()
-{
-    int i, j, k;
-    for (i = 2; i <= 10000; i++)
-    {
-        for (j = i + i; j <= 10000; j += i)
-        {
-            data[j].push_back(i);
-        }
-    }
-}
+
+#define read freopen("input.txt","r",stdin)
+#define write freopen("output.txt","w",stdout)
+typedef long int int32;
+typedef unsigned long int uint32;
+typedef long long int int64;
+typedef unsigned long long int uint64;
+#define lld long long int
+#define INF (int)1e9
+#define EPS 1e-9
+#define PI 3.1415926535897932384626433832795
+#define mXs 1000000
+const double pi = acos(-1.0);
+
+
 int main()
 {
-    preoad();
-    int n, m, count = 0;
-
-    cin >> n >> m;
-
-    if (m > n)
+    cin.tie(NULL);
+    //read;
+    //write;
+    ios_base::sync_with_stdio(false);
+    lld m,n,count=0;
+    cin>>n>>m;
+    while (n<m)
     {
-        if (m % n != 0 && data[m].size()&&n!=1)
-        {
-            vector<int>::iterator it;
-            it = upper_bound(data[m].begin(), data[m].end(), n);
-
-            if (--it != data[m].begin())
-            {
-                if (it + 1 != data[m].end())
-                {
-                    if (n - *it <= *(it + 1) - n)
-                    {
-                        count += (n - *it);
-                        n = *it;
-                    }
-                    else
-                    {
-                        count += (*(it + 1) - n);
-                        n = *(it + 1);
-                    }
-                }
-                else
-                {
-                    count += (n - *it);
-                    n = *it;
-                }
-            }
-        }else if(data[m].size()==0||n==1){
-            //if(data[m].size()==0)count++;
-            while (n*2<m)
-            {
-               count++;
-               n*=2; 
-            }
-            cout << count + ((n*2-m))+1 << endl;
-            return 0;
-        }
-        cout << count + ((m / n) / 2) << endl;
+        count++;
+        if(m%2==0)m/=2;
+        else m+=1;
     }
-    else
-    {
-        cout << n-m << endl;
-    }
-
+    cout<<count+(n-m)<<endl;
     return 0;
 }
